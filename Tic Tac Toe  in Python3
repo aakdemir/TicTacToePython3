@@ -1,1 +1,75 @@
+#Creating a new board
+def new_board():
+    global B1,B2,B3
+    B1=["   ","   ","   " ]
+    B2=["   ","   ","   " ]
+    B3=["   ","   ","   " ] 
+    
+new_board()
 
+def user():
+    s=input("Which symbol do you want to use ? ")
+    s=s.upper()
+    if(s==("X") or s==("O") ):
+        
+        print(s)
+        con(s)
+        
+    else:
+        
+        print("Please use the letters X or O !")
+        user()
+        
+#Controlling the inputs
+def con(s):
+    num=["1","2","3","4","5","6","7","8","9"]
+    b=input("Where do you want to locate your symbol in the range (1,9) ? ")
+    
+    if not b in num:
+         con(s)
+    else:
+        c=int(b)
+        if(c<1 or c>10):
+            con(s)
+        else:
+            board(s,c)    
+#Assignment of symbols and coordinates, moreover the winning condition            
+def board(symbol,coordinate):
+        if(coordinate<=3):
+            if(B3[coordinate-1]!="   "):
+                print("Wrong position, try again!")
+                
+            else:
+                B3[coordinate-1]=" "+symbol+" "
+                print("",B1,"\n",B2,"\n",B3) 
+        elif(3<coordinate<=6): 
+            coordinate%=3 
+            if(B2[coordinate-1]=="   "):
+                B2[coordinate-1]=" "+symbol+" "
+                print("",B1,"\n",B2,"\n",B3) 
+            else:
+                print("Wrong position, try again!")
+        elif(6<coordinate<=9):  
+            coordinate%=3 
+            if(B1[coordinate-1]=="   "):
+                B1[coordinate-1]=" "+symbol+" "
+                print("",B1,"\n",B2,"\n",B3) 
+            else:
+                print("Wrong position, try again!")
+        else:
+            print("",B1,"\n",B2,"\n",B3)
+        if((B1[0]==' X ' and B1[1]==' X ' and B1[2]==' X ')or (B1[0]==' O ' and B1[1]==' O ' and B1[2]==' O ') or(B2[0]==' O ' and B2[1]==' O ' and B2[2]==' O ') or (B2[0]==' X ' and B2[1]==' X ' and B2[2]==' X ')or (B3[0]==' O ' and B3[1]==' O ' and B3[2]==' O ') or (B3[0]==' X ' and B3[1]==' X ' and B3[2]==' X ')
+          or(B1[0]==' X ' and B2[0]==' X ' and B3[0]==' X ') or(B1[0]==' O ' and B2[0]==' O ' and B3[0]==' O ') or(B1[1]==' X ' and B2[1]==' X ' and B3[1]==' X ') or(B1[1]==' O ' and B2[1]==' O ' and B3[1]==' O ')or(B1[2]==' X ' and B2[2]==' X ' and B3[2]==' X ') or(B1[2]==' O ' and B2[2]==' O ' and B3[2]==' O ')
+          or(B1[0]==' X ' and B2[1]==' X ' and B3[2]==' X ') or(B1[0]==' O ' and B2[1]==' O ' and B3[2]==' O ')or(B1[2]==' X ' and B2[1]==' X ' and B3[0]==' X ') or(B1[2]==' O ' and B2[1]==' O ' and B3[0]==' O ')) :
+            print("You win!") 
+            t=input("Do you want to play again, yes or no ? ")   
+            if(t,lower[0]=="y"):
+                new_board()
+                user()
+        else:
+                user()
+                
+       #Start to play the game
+       user()
+        
+        
